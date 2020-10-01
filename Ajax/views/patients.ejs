@@ -1,0 +1,160 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<br><br><br>
+
+<div class="col-md-12">
+
+
+    <div id="result"></div>
+    <h1 class="text-center">LISTA PACIJENATA</h1>
+    <br><br>
+
+    <div class="input-group">
+        <span class="input-group-addon">Tražilica</span>
+        <input type="text" name="search_text" id="search_text" placeholder="Pretraži..." class="form-control" />
+    </div>
+    <br><br>
+
+    <a href="/pacijent/add" class="btn btn-info right" role="button">Dodajte Pacijenta</a>
+
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ime</th>
+                <th scope="col">
+                    Prezime
+                </th>
+                <th scope="col">Datum rođenja</th>
+                <th scope="col">Grad</th>
+                <th scope="col">Zdravstveni karton</th>
+                <th scope="col"> <span style="color: red">TERAPIJA</span></th>
+      
+                <th scope="col">Izbriši</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <% pacijenti.forEach((pacijent)=> { %>
+            <tr>
+                <td><%= pacijent.ime %></td>
+                <td><%= pacijent.prezime %></td>
+                <td><%= pacijent.datumRodjenja %> </td>
+                <td><%= pacijent.grad %></td>
+                <td><%= pacijent.zdravstveniKarton %> </td>
+                <td> <button class="terapije btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                        data-id="<%= pacijent._id %>">
+                        TERAPIJA
+                    </button></td>
+                <td><button class="brisi btn btn-danger" data-id="<%= pacijent._id %>"
+                        value="<%= pacijent._id %>">Izbriši</button>
+                </td>
+            </tr>
+            <% }) %>
+            </tr>
+
+        </tbody>
+    </table>
+    <div id="prvi">
+    
+    </div>
+
+ 
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLongTitle" style="text-align: center;"> </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zatvori</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        load_data();
+        function load_data(query) {
+            $.ajax({
+                url: "/pacijenti/get",
+                method: "post",
+                data: { query: query },
+                success: function (data) {
+                    $("tbody").empty();
+                    data.forEach(function (item) {
+                        $("tbody").append(`<tr><td>${item.ime}</td><td>${item.prezime}</td><td>${item.datumRodjenja}</td><td>${item.grad}</td><td>${item.zdravstveniKarton}</td>                 <td> <button class="terapije btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-id="${item._id}"> TERAPIJA </button></td> <td><button class="brisi btn btn-danger" data-id="${item._id}" value="${item._id}">Izbriši</button> </td></tr>`);
+                    });
+                }
+            });
+        }
+        $('#search_text').keyup(function () {
+            var search = $(this).val();
+            console.log(search);
+          
+                load_data(search);
+        });
+    });
+    $(document).ready(function () {
+        $('.brisi').on('click', function (e) {
+            e.preventDefault();
+            $target = $(e.target);
+            var id = $target.attr('data-id');
+            console.log("ID: " + id);
+            $.ajax({
+                type: 'DELETE',
+                url: '/pacijent/' + id,
+                success: (response) => {
+                   window.location="/"
+                },
+                error: (e) => {
+                    alert('error!')
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.terapije').on('click', function (e) {
+            e.preventDefault();
+            $target = $(e.target);
+            var id = $target.attr('data-id');
+            console.log("ID: " + id);
+            $.ajax({
+                type: 'POST',
+                url: '/pacijenti/getOne',
+                data: { id: id },
+                success: (response) => {
+                    console.log(response);
+                   
+                    $(".modal-body").empty();
+                    $(".modal-title").empty();
+                    $(".modal-title").append(`Pacijent : ${response[0].ime} ${response[0].prezime} `);
+                     $(".modal-body").append(`<h4> Naziv : ${response[0].terapija.naziv}</h5> </br>`);
+                     $(".modal-body").append(`<h4> Trajanje : ${response[0].terapija.trajanje}</h5> </br>`);
+                     $(".modal-body").append(`<h4> Opis : ${response[0].terapija.opis}</h5></br>`);
+                },
+                error: (e) => {
+                    console.log(e);
+                    alert('error!')
+                }
+            });
+        });
+    });
+</script>

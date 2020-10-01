@@ -1,0 +1,80 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://juricaraspudic.com/soapservice/hospital"
+           targetNamespace="http://juricaraspudic.com/soapservice/hospital"
+           elementFormDefault="qualified">
+
+    <xs:element name="getAppointmentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAppointmentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="appointment" type="tns:appointment" minOccurs="0"
+                            maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserAppointmentsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="filter" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserAppointmentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="appointment" type="tns:appointment" minOccurs="0"
+                            maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="appointment">
+        <xs:sequence>
+            <xs:element name="appointmentid" type="xs:int"/>
+            <xs:element name="startdatetime" type="xs:dateTime"/>
+            <xs:element name="enddatetime" type="xs:dateTime"/>
+            <xs:element name="examinationroom" type="xs:string"/>
+            <xs:element name="patient" type="tns:patient"/>
+            <xs:element name="prepnurse" type="tns:nurse" minOccurs="0"/>
+            <xs:element name="physician" type="tns:physician"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="patient">
+        <xs:sequence>
+            <xs:element name="ssn" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="insuranceid" type="xs:int"/>
+            <xs:element name="pcp" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="nurse">
+        <xs:sequence>
+            <xs:element name="employeeid" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="position" type="xs:string"/>
+            <xs:element name="registered" type="xs:boolean"/>
+            <xs:element name="ssn" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="physician">
+        <xs:sequence>
+            <xs:element name="employeeid" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="position" type="xs:string"/>
+            <xs:element name="ssn" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

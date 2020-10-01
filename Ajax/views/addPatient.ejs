@@ -1,0 +1,70 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="col-md-12">
+    <br><br>
+    <a href="/" class="btn btn-info right" role="button"><-- Povratak na sve pacijente</a>
+    <h2 style="text-align: center;">Dodajte pacijenta</h2>
+    <hr>
+
+    <form   method="POST" style="display: flex; justify-content: center">
+        <div>
+        <input type="text" class="my-5 h3" placeholder="ime" name="ime" id="ime"></br></br>
+        <input type="text" class="my-5 h3" placeholder="prezime" name="prezime" id="prezime"></br></br>
+        <input type="text" class="my-5 h3" placeholder="datumRodjenja" name="datumRodjenja" id="datumRodjenja"></br>
+        <input type="text" class="my-5 h3" placeholder="grad" name="grad" id="grad"></br>
+        <input type="text" class="my-5 h3" placeholder="zdravstveniKarton" name="zdravstveniKarton" id="zdravstveniKarton"></br>
+
+            <br><br>
+            <h3>Terapija:</h3>
+            <input type="text" class="my-5 h3" placeholder="naziv terapije" name="naziv" id="naziv"></br></br>
+            <input type="text" class="my-5 h3" placeholder="trajanje  u danima" name="trajanje" id="trajanje"></br></br>
+            <input type="text" class="my-5 h3" placeholder="opis terapije" name="opis" id="opis"></br>
+            <br><br>
+            <div style="display: flex; justify-content: center">
+        
+        <button type="submit" class="btn btn-primary spremi">Spremi</button>
+    </div>
+    </div>
+    </form>
+</div>
+
+<script>
+          $(document).ready(function () {
+        $('.spremi').on('click', function (e) {
+            e.preventDefault();
+            var ime = $("#ime").val();
+            var prezime = $("#prezime").val();
+            var datumRodjenja = $("#datumRodjenja").val();
+            var grad = $("#grad").val();
+            var zdravstveniKarton = $("#zdravstveniKarton").val();
+            var naziv = $("#naziv").val();
+            var trajanje = $("#trajanje").val();
+            var opis = $("#opis").val();
+;   
+            $.ajax({
+                type: 'POST',
+                url: '/addPacijent/',
+                data:{
+                    ime,
+                    prezime,
+                    datumRodjenja,
+                    grad,
+                    zdravstveniKarton,        
+                    naziv,
+                    trajanje,
+                    opis
+                },
+                success: (response) => {
+                    window.location = "/"
+                },
+                error: (e) => {
+                    alert('error!')
+                }
+            });
+        });
+    });
+</script>

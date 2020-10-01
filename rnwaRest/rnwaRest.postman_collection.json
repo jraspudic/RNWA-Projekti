@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "393c6841-db5e-4436-86a5-365a1c92ded4",
+		"name": "rnwaRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Terapije",
+			"item": [
+				{
+					"name": "getTerapija",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/getTerapija",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"getTerapija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTerapija",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n  {\r\n      \"naziv\": \"panadol\",\r\n      \"trajanje\": \"14\",\r\n      \"opis\": \"jednu dnevno popit\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/addTerapija",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"addTerapija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTerapija",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/terapija/5ef931a57be2701210a41154",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"terapija",
+								"5ef931a57be2701210a41154"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTerapija",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n      \"naziv\": \"paracetamol :)\",\r\n      \"trajanje\": \"11\",\r\n      \"opis\": \"jednu ujutro jednu navecer :-)\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/editTerapija/5ef9318c7be2701210a41153",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editTerapija",
+								"5ef9318c7be2701210a41153"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "getPacijent",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zeXN0ZW0iOiIxIiwiZ2l2ZW5fbmFtZSI6IkJvcmlzIiwiZmFtaWx5X25hbWUiOiJTbG9rYXIiLCJlbWFpbCI6ImJvcmlzLnNsb2thckBnbWFpbC5jb20iLCJyb2xlIjpbIkdsb2JhbEFkbWluIiwiQWRtaW4iLCJVc2VyIl0sIm5iZiI6MTU5MDY2Mjc2MywiZXhwIjoxNTkwNzQ5MTYzLCJpYXQiOjE1OTA2NjI3NjN9.mx4p7mfAZvHByNSNlHNPAFfbTB7_PuQFpIVV5H6DXK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n     \r\n }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPacijent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zeXN0ZW0iOiIxIiwiZ2l2ZW5fbmFtZSI6IkJvcmlzIiwiZmFtaWx5X25hbWUiOiJTbG9rYXIiLCJlbWFpbCI6ImJvcmlzLnNsb2thckBnbWFpbC5jb20iLCJyb2xlIjpbIkdsb2JhbEFkbWluIiwiQWRtaW4iLCJVc2VyIl0sIm5iZiI6MTU5MDY2Mjc2MywiZXhwIjoxNTkwNzQ5MTYzLCJpYXQiOjE1OTA2NjI3NjN9.mx4p7mfAZvHByNSNlHNPAFfbTB7_PuQFpIVV5H6DXK4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"ime\": \"Stipica\",\r\n    \"prezime\": \"Klepić\",\r\n    \"datumRodjenja\": \"30.02.1997\",\r\n    \"grad\": \"Bugojno\",\r\n    \"zdravstveniKarton\": \"boli ga glava\",\r\n    \"terapija\": {\r\n      \"_id\": \"njbjgbdfsjbgbjfdsgbfdjgbfdj\",\r\n      \"naziv\": \"paracetamol\",\r\n      \"trajanje\": \"14\",\r\n      \"opis\": \"jednu dnevno popit\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/addPacijent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addPacijent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePacijent",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pacijent/5ef92bccacb2500b3c8eabde",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pacijent",
+						"5ef92bccacb2500b3c8eabde"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePacijent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"ime\": \"Stipica\",\r\n    \"prezime\": \"Klepić\",\r\n    \"datumRodjenja\": \"30.02.1997\",\r\n    \"grad\": \"Bugojno\",\r\n    \"zdravstveniKarton\": \"boli ga glava, koronavirus\",\r\n    \"terapija\": {\r\n      \"_id\": \"njbjgbdfsjbgbjfdsgbfdjgbfdj\",\r\n      \"naziv\": \"paracetamol\",\r\n      \"trajanje\": \"14\",\r\n      \"opis\": \"jednu dnevno popit\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/editPacijent/5ef92a0da1002a1568eac52e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"editPacijent",
+						"5ef92a0da1002a1568eac52e"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

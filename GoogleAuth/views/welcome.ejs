@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="project-card">
+        <div class="card-project-preview2">
+          <img
+            src="<%=data._json.picture%>"
+            width="500px"
+            height="200px"
+            alt=""
+          />
+        </div>
+        <div class="card-project-content">
+          <h4 class="card-project-title">Dobrodošli!</h4>
+          <p class="card-project-description">
+            Uspješno ste logirani kao <%=data.displayName%>
+          </p>
+          <a href="/logout"
+            ><button class="btn-google2">Logout from Google+</button></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
